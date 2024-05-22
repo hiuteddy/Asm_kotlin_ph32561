@@ -16,6 +16,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
+<<<<<<< HEAD
+=======
+import androidx.compose.material3.SnackbarHostState
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -35,6 +39,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+<<<<<<< HEAD
 import com.example.myapplication.R
 
 class LoginScreen : ComponentActivity() {
@@ -62,6 +67,29 @@ fun MyApplicationTheme(content: @Composable () -> Unit) {
 
 @Composable
 fun LoginScreenContent() {
+=======
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.example.myapplication.R
+
+@Composable
+fun LoginScreen(navController: NavController) {
+    loginScreenPreview(navController)
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun loginScreenPreview(navController: NavController? = null) {
+    getLayout(navController)
+}
+
+@Composable
+private fun getLayout(navController: NavController? = null) {
+
+
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
     val context = LocalContext.current
     var userName by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -70,15 +98,23 @@ fun LoginScreenContent() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+<<<<<<< HEAD
     )
 
     {
+=======
+    ) {
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
         Spacer(modifier = Modifier.height(10.dp))
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
+<<<<<<< HEAD
                         modifier = Modifier.padding(30.dp)
 
+=======
+            modifier = Modifier.padding(30.dp)
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
         ) {
             Box(
                 modifier = Modifier
@@ -106,6 +142,10 @@ fun LoginScreenContent() {
             fontSize = 30.sp,
             color = Color(0xFFBDBDBD),
             modifier = Modifier.padding(start = 30.dp),
+<<<<<<< HEAD
+=======
+            fontFamily = FontFamily(Font(R.font.merriweather_regular)),
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
 
             )
         Text(
@@ -113,6 +153,7 @@ fun LoginScreenContent() {
             fontSize = 24.sp,
             color = Color(0xFF303030),
             fontWeight = FontWeight.Bold,
+<<<<<<< HEAD
             modifier = Modifier.padding(top = 10.dp, bottom = 40.dp, start = 30.dp)
 
 
@@ -133,11 +174,40 @@ fun LoginScreenContent() {
                 modifier = Modifier.fillMaxWidth().padding(start = 30.dp, top = 35.dp),
 
                 )
+=======
+            modifier = Modifier.padding(top = 10.dp, bottom = 40.dp, start = 30.dp),
+            fontFamily = FontFamily(Font(R.font.merriweather_regular)),
+
+            )
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(500.dp)
+                .padding(end = 45.dp)
+                .background(color = Color.White)
+                .shadow(0.5.dp, RoundedCornerShape(topEnd = 1.dp, bottomEnd = 1.dp))
+        ) {
+            UnderlinedTextField(
+                value = userName,
+                onValueChange = { userName = it },
+                label = { Text(
+                    text = "Email",
+                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+                    fontWeight = FontWeight.W400,
+                    fontSize = 14.sp,
+                    lineHeight = 19.1.sp,
+                    color = Color(0xFF909090)
+                ) },
+                modifier = Modifier.fillMaxWidth().padding(start = 30.dp, top = 35.dp)
+            )
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             Spacer(modifier = Modifier.height(40.dp))
 
             UnderlinedTextField(
                 value = password,
                 onValueChange = { password = it },
+<<<<<<< HEAD
                 label = { Text("Password", fontSize = 15.sp, color = Color(0xFF909090)) },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
@@ -149,6 +219,25 @@ fun LoginScreenContent() {
                 modifier = Modifier.fillMaxWidth()
                    .padding(start = 30.dp)
 
+=======
+                label = { Text("Password",
+                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+                    fontWeight = FontWeight.W400,
+                    fontSize = 14.sp,
+                    lineHeight = 19.1.sp,
+                    color = Color(0xFF909090)
+                ) },                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                trailingIcon = {
+                    val image: Painter = if (passwordVisible) painterResource(id = R.drawable.eye_slash_icon) else painterResource(id = R.drawable.eye_icon)
+                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                        Image(
+                            painter = image, contentDescription = "Toggle password visibility",
+                            modifier = Modifier.size(20.dp)
+                        )
+                    }
+                },
+                modifier = Modifier.fillMaxWidth().padding(start = 30.dp)
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -157,6 +246,11 @@ fun LoginScreenContent() {
                 fontWeight = FontWeight.W600,
                 color = Color(0xFF303030),
                 textAlign = TextAlign.Center,
+<<<<<<< HEAD
+=======
+                fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(40.dp)
@@ -165,13 +259,22 @@ fun LoginScreenContent() {
                 onClick = {
                     if (userName.isNotBlank() && password.isNotBlank()) {
                         Toast.makeText(context, "Login successful", Toast.LENGTH_LONG).show()
+<<<<<<< HEAD
+=======
+                        navController?.navigate(Screen.MyBottombar.route)
+
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
                     } else {
                         Toast.makeText(
                             context,
                             "Please enter username and password",
                             Toast.LENGTH_LONG
+<<<<<<< HEAD
                         )
                             .show()
+=======
+                        ).show()
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
                     }
                 },
                 colors = ButtonDefaults.buttonColors(
@@ -184,12 +287,31 @@ fun LoginScreenContent() {
                     .height(50.dp)
                     .padding(start = 30.dp)
             ) {
+<<<<<<< HEAD
                 Text(text = "Log in")
+=======
+                Text(
+                    text = "Log in",
+                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+                    fontWeight = FontWeight.W600,
+                    fontSize = 18.sp,
+                    lineHeight = 24.5.sp,
+                    color = Color(0xFFFFFFFF)
+                )
+
+
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
             TextButton(
+<<<<<<< HEAD
                 onClick = { /* TODO: Navigate to Sign Up screen */ },
+=======
+                onClick = {
+                    navController?.navigate(Screen.SignSrceen.route)
+                },
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -198,12 +320,21 @@ fun LoginScreenContent() {
                     fontWeight = FontWeight.SemiBold,
                     lineHeight = 24.55.sp,
                     textAlign = TextAlign.Center,
+<<<<<<< HEAD
                     color = Color(0xFF303030)
 
                 )
             }
         }
 
+=======
+                    color = Color(0xFF303030),
+                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+
+                    )
+            }
+        }
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
     }
 }
 
@@ -229,11 +360,17 @@ fun UnderlinedTextField(
                 unfocusedIndicatorColor = Color.Gray,
                 cursorColor = Color.Black,
                 containerColor = Color.Transparent
+<<<<<<< HEAD
 
+=======
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             ),
             singleLine = true,
             textStyle = LocalTextStyle.current.copy(color = Color.Black)
         )
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
