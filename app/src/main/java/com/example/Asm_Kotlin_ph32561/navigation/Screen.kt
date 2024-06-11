@@ -1,4 +1,4 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.navigation
 
 enum class Screen(val route: String) {
     Boarding("Boarding"),

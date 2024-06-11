@@ -1,219 +1,83 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-<<<<<<< HEAD
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-=======
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-<<<<<<< HEAD
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.myapplication.R
-
-class ProductDetailScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyApp {
-                ProductDetailScreen(onBackClicked = { finish() })
-            }
-        }
-    }
-}
-
-@Composable
-fun MyApp(content: @Composable () -> Unit) {
-    MaterialTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
-fun ProductDetailScreen(onBackClicked: () -> Unit) {
-    var quantity by remember { mutableStateOf(1) }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            IconButton(onClick = onBackClicked) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "Product Details",
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
-            contentDescription = "Product Image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Text(
-            text = "Minimal Stand",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = "$50",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Green,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-
-            IconButton(onClick = { if (quantity > 1) quantity-- }) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Decrease")
-            }
-            Text(
-                text = "$quantity",
-                fontSize = 20.sp,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-            IconButton(onClick = { quantity++ }) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Increase")
-            }
-        }
-
-
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            for (i in 1..5) {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = "Star",
-                    tint = if (i <= 4) Color.Yellow else Color.Gray
-                )
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "4.5 (50 reviews)",
-                fontSize = 16.sp,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-        }
-
-        Text(
-            text = "Minimal Stand is made of natural wood...",
-            fontSize = 16.sp,
-            textAlign = TextAlign.Justify,
-            modifier = Modifier.padding(bottom = 16.dp)
-        )
-
-
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Button(
-            onClick = { /* TODO: Add to cart action */ },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-        ) {
-            Icon(Icons.Filled.ShoppingCart, contentDescription = "Add to cart")
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Add to cart")
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Button(
-            onClick = { /* TODO: Save action */ },
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.LightGray,
-                contentColor = Color.Black
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp)
-        ) {
-            Icon(Icons.Filled.Share, contentDescription = "Save")
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("Save")
-        }
-    }
-}
-=======
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.core.graphics.toColorInt
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.Asm_Kotlin_ph32561.navigation.Screen
+import com.example.Asm_Kotlin_ph32561.viewmodel.ViewModelProduct
 import com.example.myapplication.R
+import coil.compose.AsyncImage
+import com.example.Asm_Kotlin_ph32561.viewmodel.ViewModelBillRequest
 
 
-@Preview(showBackground = true)
 @Composable
-fun ProductDetailScreen(navController: NavController? = null) {
+fun ProductDetailScreen(
+    productId: String,
+    navController: NavController? = null,
+    viewModelProduct: ViewModelProduct = viewModel(),
+    viewModelBillRequest: ViewModelBillRequest = viewModel()
+) {
+    val detailProduct by viewModelProduct.detailProduct
+
+    LaunchedEffect(Unit) {
+        viewModelProduct.detailProductViewModel(productId)
+    }
+
+    var number by remember { mutableStateOf(1) }
 
     Box {
         Box(
             modifier = Modifier
                 .padding(
-                    start = 20.dp,
+                    start = 50.dp,
                     top = 50.dp,
                     end = 20.dp,
                     bottom = 20.dp
                 )
+                .zIndex(1f)
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.back_icon),
-                contentDescription = null,
+            IconButton(
+                onClick = {
+                    navController?.popBackStack()
+
+                },
                 Modifier
-                    .size(40.dp)
-                    .clickable(onClick = {
-                        navController?.popBackStack()
-                    })
-            )
+                    .background(
+                        Color.White,
+                        shape = RoundedCornerShape(6.dp)
+                    )
+                    .width(40.dp)
+                    .height(40.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.back_icon),
+                    contentDescription = "search_icon",
+                    modifier = Modifier
+                        .height(24.dp)
+                        .width(24.dp)
+                )
+            }
         }
+
 
         Box(
             modifier = Modifier
@@ -282,10 +146,10 @@ fun ProductDetailScreen(navController: NavController? = null) {
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.minimalstand),
-                contentDescription = null,
-                Modifier
+            AsyncImage(
+                model = detailProduct?.image,
+                contentDescription = "",
+                modifier = Modifier
                     .width(323.dp)
                     .height(455.dp)
                     .align(Alignment.End)
@@ -297,21 +161,22 @@ fun ProductDetailScreen(navController: NavController? = null) {
                     .padding(
                         start = 20.dp,
                         top = 20.dp,
-                        end = 20.dp,
+                        end =20.dp
                     )
                     .fillMaxWidth()
                     .clickable(
-                        onClick = {
-                        })
+                        onClick = {})
             ) {
 
                 // tên sản phẩm
-                Text(
-                    text = "Minimal Stand",
-                    fontFamily = FontFamily(Font(R.font.gelasio_regular)),
-                    fontWeight = FontWeight(500),
-                    fontSize = 24.sp,
-                )
+                detailProduct?.let {
+                    Text(
+                        text = it.productName,
+                        fontFamily = FontFamily(Font(R.font.gelasio_regular)),
+                        fontWeight = FontWeight(500),
+                        fontSize = 24.sp,
+                    )
+                }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
@@ -324,7 +189,7 @@ fun ProductDetailScreen(navController: NavController? = null) {
 
                     // giá
                     Text(
-                        text = "$ 50",
+                        text = "$ ${detailProduct?.price}",
                         fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                         fontWeight = FontWeight(700),
                         fontSize = 30.sp,
@@ -339,7 +204,7 @@ fun ProductDetailScreen(navController: NavController? = null) {
                     ) {
 
                         IconButton(
-                            onClick = {},
+                            onClick = { number++ },
                             modifier = Modifier
                                 .size(30.dp)
                                 .background(
@@ -355,7 +220,7 @@ fun ProductDetailScreen(navController: NavController? = null) {
                         }
 
                         Text(
-                            text = "1",
+                            text = number.toString(),
                             fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                             fontWeight = FontWeight(600),
                             fontSize = 18.sp,
@@ -367,7 +232,11 @@ fun ProductDetailScreen(navController: NavController? = null) {
                         )
 
                         IconButton(
-                            onClick = {},
+                            onClick = {
+                                if (number > 1) {
+                                    number--
+                                }
+                            },
                             modifier = Modifier
                                 .size(30.dp)
                                 .background(
@@ -393,11 +262,11 @@ fun ProductDetailScreen(navController: NavController? = null) {
                         .fillMaxWidth()
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.star_icon),
+                        painter = painterResource(id = R.drawable.gold_star_icon),
                         contentDescription = null,
                         modifier = Modifier
                             .size(20.dp),
-                            colorFilter = ColorFilter.tint(Color.Yellow) // Màu vàng
+
                     )
 
                     Spacer(modifier = Modifier.width(8.dp))
@@ -425,16 +294,15 @@ fun ProductDetailScreen(navController: NavController? = null) {
                 Spacer(modifier = Modifier.height(10.dp))
 
                 // mô tả
-                Text(
-                    text = "Minimal Stand is made of by natural wood. " +
-                            "The design that is very simple and minimal. " +
-                            "This is truly one of the best furnitures in any family for now. " +
-                            "With 3 different colors, you can easily select the best match for your home. ",
-                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
-                    fontWeight = FontWeight(300),
-                    fontSize = 14.sp,
-                    color = Color("#606060".toColorInt()),
-                )
+                detailProduct?.description?.let {
+                    Text(
+                        text = it,
+                        fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+                        fontWeight = FontWeight(300),
+                        fontSize = 14.sp,
+                        color = Color("#606060".toColorInt()),
+                    )
+                }
 
             }
         }
@@ -444,7 +312,7 @@ fun ProductDetailScreen(navController: NavController? = null) {
                 .padding(
                     bottom = 20.dp,
                     start = 20.dp,
-                    top = 750.dp,
+                    top = 740.dp,
                     end = 20.dp
                 )
         ) {
@@ -475,7 +343,11 @@ fun ProductDetailScreen(navController: NavController? = null) {
                 }
 
                 Button(
-                    onClick = {},
+                    onClick = {
+                            viewModelBillRequest.addBillViewModel(productId, number)
+                            navController?.navigate(Screen.Cart.route)
+
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color("#242424".toColorInt())
                     ),
@@ -497,13 +369,9 @@ fun ProductDetailScreen(navController: NavController? = null) {
                 }
             }
 
-            // nút thêm vào yêu thích
-
 
         }
 
-    }
 
     }
-
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+}

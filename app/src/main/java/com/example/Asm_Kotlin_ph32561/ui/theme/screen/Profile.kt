@@ -26,7 +26,7 @@ fun Profile(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextButton(onClick = { /*TODO*/ }) {
-                Text("Profile", fontSize = 20.sp, color = Color.Red)
+                Text("Ca nhan", fontSize = 20.sp, color = Color.Red)
             }
         }
     }

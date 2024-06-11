@@ -1,6 +1,5 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
-import android.app.Notification
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +26,7 @@ fun Notification(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextButton(onClick = { /*TODO*/ }) {
-                Text("Notification", fontSize = 20.sp, color = Color.Red)
+                Text("Thong bao", fontSize = 20.sp, color = Color.Red)
             }
         }
     }

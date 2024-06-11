@@ -1,26 +1,18 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
-package com.example.Asm_Kotlin_ph32561
 
-import android.os.Bundle
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
+
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
-<<<<<<< HEAD
-=======
 import androidx.compose.material3.SnackbarHostState
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
@@ -39,40 +31,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
-<<<<<<< HEAD
-import com.example.myapplication.R
-
-class LoginScreen : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            MyApplicationTheme {
-                LoginScreenContent()
-            }
-        }
-    }
-}
-
-@Composable
-fun MyApplicationTheme(content: @Composable () -> Unit) {
-    MaterialTheme {
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            content()
-        }
-    }
-}
-
-@Composable
-fun LoginScreenContent() {
-=======
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.Asm_Kotlin_ph32561.navigation.Screen
+import com.example.Asm_Kotlin_ph32561.request.LoginRequest
+import com.example.Asm_Kotlin_ph32561.viewmodel.ViewModelAuthenticate
 import com.example.myapplication.R
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -86,39 +54,49 @@ private fun loginScreenPreview(navController: NavController? = null) {
 }
 
 @Composable
-private fun getLayout(navController: NavController? = null) {
+private fun getLayout(
+    navController: NavController? = null, viewModelAuth: ViewModelAuthenticate = viewModel()
+) {
 
-
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+    val login by viewModelAuth.login
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    var userName by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-<<<<<<< HEAD
-    )
+    fun Login() {
+        val request = LoginRequest(email, password)
+        viewModelAuth.loginViewModel(request)
+    }
 
-    {
-=======
+    LaunchedEffect(key1 = login) {
+        if (login != null) {
+            if (login?.status == 200) {
+                navController?.navigate(Screen.MyBottombar.route)
+            } else {
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar(login?.message ?: "Lỗi không xác định")
+                }
+            }
+        }
+
+    }
+
+
+
+    Column(
+        modifier = Modifier.fillMaxSize()
     ) {
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
         Spacer(modifier = Modifier.height(10.dp))
 
         Row(
-            verticalAlignment = Alignment.CenterVertically,
-<<<<<<< HEAD
-                        modifier = Modifier.padding(30.dp)
-
-=======
-            modifier = Modifier.padding(30.dp)
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+            verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(30.dp)
         ) {
             Box(
                 modifier = Modifier
-                    .width(162.dp)
+                    .width(122.dp)
                     .height(2.dp)
                     .background(color = Color(0xFFBDBDBD))
             )
@@ -142,10 +120,7 @@ private fun getLayout(navController: NavController? = null) {
             fontSize = 30.sp,
             color = Color(0xFFBDBDBD),
             modifier = Modifier.padding(start = 30.dp),
-<<<<<<< HEAD
-=======
             fontFamily = FontFamily(Font(R.font.merriweather_regular)),
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
 
             )
         Text(
@@ -153,28 +128,6 @@ private fun getLayout(navController: NavController? = null) {
             fontSize = 24.sp,
             color = Color(0xFF303030),
             fontWeight = FontWeight.Bold,
-<<<<<<< HEAD
-            modifier = Modifier.padding(top = 10.dp, bottom = 40.dp, start = 30.dp)
-
-
-        )
-
-        Column (
-            modifier = Modifier
-                .fillMaxWidth() // Đảm bảo chiều rộng của Column lấp đầy toàn bộ chiều rộng của cha
-                .height(500.dp)
-                .padding(end = 45.dp) // Đảm bảo không có khoảng cách ngang
-                .background(color = Color.White)
-                .shadow(0.5.dp, RoundedCornerShape(topEnd = 1.dp, bottomEnd = 1.dp)) // Thêm shadow với độ mờ 8dp
-        ){
-            UnderlinedTextField(
-                value = userName,
-                onValueChange = { userName = it },
-                label = { Text("Email", fontSize = 15.sp, color = Color(0xFF909090)) },
-                modifier = Modifier.fillMaxWidth().padding(start = 30.dp, top = 35.dp),
-
-                )
-=======
             modifier = Modifier.padding(top = 10.dp, bottom = 40.dp, start = 30.dp),
             fontFamily = FontFamily(Font(R.font.merriweather_regular)),
 
@@ -183,61 +136,55 @@ private fun getLayout(navController: NavController? = null) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(500.dp)
+                .height(437.dp)
                 .padding(end = 45.dp)
                 .background(color = Color.White)
                 .shadow(0.5.dp, RoundedCornerShape(topEnd = 1.dp, bottomEnd = 1.dp))
         ) {
-            UnderlinedTextField(
-                value = userName,
-                onValueChange = { userName = it },
-                label = { Text(
+            UnderlinedTextField(value = email, onValueChange = { email = it }, label = {
+                Text(
                     text = "Email",
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W400,
                     fontSize = 14.sp,
                     lineHeight = 19.1.sp,
                     color = Color(0xFF909090)
-                ) },
-                modifier = Modifier.fillMaxWidth().padding(start = 30.dp, top = 35.dp)
+                )
+            }, modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 30.dp, top = 35.dp)
             )
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             Spacer(modifier = Modifier.height(40.dp))
 
-            UnderlinedTextField(
-                value = password,
+            UnderlinedTextField(value = password,
                 onValueChange = { password = it },
-<<<<<<< HEAD
-                label = { Text("Password", fontSize = 15.sp, color = Color(0xFF909090)) },
+                label = {
+                    Text(
+                        "Password",
+                        fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
+                        fontWeight = FontWeight.W400,
+                        fontSize = 14.sp,
+                        lineHeight = 19.1.sp,
+                        color = Color(0xFF909090)
+                    )
+                },
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 trailingIcon = {
-                    val image: Painter = if (passwordVisible) painterResource(id = R.drawable.aye) else painterResource(id = R.drawable.aye) // Replace R.drawable.aye with the correct drawable resource
-                    IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                        Image(painter = image, contentDescription = "Toggle password visibility")
-                    }
-                },
-                modifier = Modifier.fillMaxWidth()
-                   .padding(start = 30.dp)
-
-=======
-                label = { Text("Password",
-                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
-                    fontWeight = FontWeight.W400,
-                    fontSize = 14.sp,
-                    lineHeight = 19.1.sp,
-                    color = Color(0xFF909090)
-                ) },                visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                trailingIcon = {
-                    val image: Painter = if (passwordVisible) painterResource(id = R.drawable.eye_slash_icon) else painterResource(id = R.drawable.eye_icon)
+                    val image: Painter =
+                        if (passwordVisible) painterResource(id = R.drawable.eye_slash_icon) else painterResource(
+                            id = R.drawable.eye_icon
+                        )
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
                         Image(
-                            painter = image, contentDescription = "Toggle password visibility",
+                            painter = image,
+                            contentDescription = "Toggle password visibility",
                             modifier = Modifier.size(20.dp)
                         )
                     }
                 },
-                modifier = Modifier.fillMaxWidth().padding(start = 30.dp)
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -246,50 +193,31 @@ private fun getLayout(navController: NavController? = null) {
                 fontWeight = FontWeight.W600,
                 color = Color(0xFF303030),
                 textAlign = TextAlign.Center,
-<<<<<<< HEAD
-=======
                 fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
 
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(40.dp)
+                    .padding(20.dp)
             )
             Button(
                 onClick = {
-                    if (userName.isNotBlank() && password.isNotBlank()) {
-                        Toast.makeText(context, "Login successful", Toast.LENGTH_LONG).show()
-<<<<<<< HEAD
-=======
-                        navController?.navigate(Screen.MyBottombar.route)
-
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+                    if (email.isBlank() || password.isBlank()) {
+                        coroutineScope.launch {
+                            snackbarHostState.showSnackbar("Không được để trống")
+                        }
                     } else {
-                        Toast.makeText(
-                            context,
-                            "Please enter username and password",
-                            Toast.LENGTH_LONG
-<<<<<<< HEAD
-                        )
-                            .show()
-=======
-                        ).show()
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
+                        Login()
                     }
                 },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF242424),
-                    contentColor = Color.White
+                    containerColor = Color(0xFF242424), contentColor = Color.White
                 ),
                 shape = RoundedCornerShape(20),
                 modifier = Modifier
                     .width(400.dp)
                     .height(50.dp)
-                    .padding(start = 30.dp)
+                    .padding(start = 30.dp, end = 15.dp)
             ) {
-<<<<<<< HEAD
-                Text(text = "Log in")
-=======
                 Text(
                     text = "Log in",
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
@@ -300,19 +228,13 @@ private fun getLayout(navController: NavController? = null) {
                 )
 
 
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             }
 
             Spacer(modifier = Modifier.height(16.dp))
             TextButton(
-<<<<<<< HEAD
-                onClick = { /* TODO: Navigate to Sign Up screen */ },
-=======
                 onClick = {
                     navController?.navigate(Screen.SignSrceen.route)
-                },
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
-                modifier = Modifier.fillMaxWidth()
+                }, modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
                     text = "SIGN UP",
@@ -320,21 +242,10 @@ private fun getLayout(navController: NavController? = null) {
                     fontWeight = FontWeight.SemiBold,
                     lineHeight = 24.55.sp,
                     textAlign = TextAlign.Center,
-<<<<<<< HEAD
-                    color = Color(0xFF303030)
-
-                )
-            }
-        }
-
-=======
                     color = Color(0xFF303030),
-                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
-
-                    )
+                    fontFamily = FontFamily(Font(R.font.nunitosans_regular)),)
             }
         }
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
     }
 }
 
@@ -360,17 +271,9 @@ fun UnderlinedTextField(
                 unfocusedIndicatorColor = Color.Gray,
                 cursorColor = Color.Black,
                 containerColor = Color.Transparent
-<<<<<<< HEAD
-
-=======
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
             ),
             singleLine = true,
             textStyle = LocalTextStyle.current.copy(color = Color.Black)
         )
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)

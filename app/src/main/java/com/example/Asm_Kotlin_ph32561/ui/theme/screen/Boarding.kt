@@ -1,4 +1,4 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.toColorInt
 import androidx.navigation.NavController
+import com.example.Asm_Kotlin_ph32561.navigation.Screen
 import com.example.myapplication.R
 
 @Composable

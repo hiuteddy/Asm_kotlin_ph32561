@@ -1,4 +1,4 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,7 +26,7 @@ fun Favourite(){
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextButton(onClick = { /*TODO*/ }) {
-                Text("Favourite", fontSize = 20.sp, color = Color.Red)
+                Text("Yeu thich", fontSize = 20.sp, color = Color.Red)
             }
         }
     }

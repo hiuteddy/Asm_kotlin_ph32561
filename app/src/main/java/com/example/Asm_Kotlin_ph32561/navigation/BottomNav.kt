@@ -1,4 +1,4 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.navigation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.height
@@ -19,6 +19,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.Asm_Kotlin_ph32561.ui.theme.screen.Favourite
+import com.example.Asm_Kotlin_ph32561.ui.theme.screen.HomeSrceen
+import com.example.Asm_Kotlin_ph32561.ui.theme.screen.Notification
 import com.example.myapplication.R
 import fpoly.giapdqph34273.asm_ph34273_kot104.Profile
 

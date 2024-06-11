@@ -1,9 +1,6 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.Asm_Kotlin_ph32561.navigation.Screen
 import com.example.myapplication.R
 
 @Preview(showBackground = true)
@@ -130,7 +128,7 @@ fun AddressSection() {
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 "25 rue Robert Latouche, Nice, 06200, Côte D'azur,\n France",
-                style = MaterialTheme.typography.bodyMedium.copy(
+                style = typography.bodyMedium.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W400,
                     fontSize = 14.sp,
@@ -168,7 +166,7 @@ fun PaymentSection() {
                 Spacer(modifier = Modifier.width(20.dp))
                 Text(
                     "**** **** **** 3947",
-                    style = MaterialTheme.typography.bodyLarge.copy(
+                    style = typography.bodyLarge.copy(
                         fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                         fontWeight = FontWeight.W600,
                         fontSize = 14.sp,
@@ -204,7 +202,7 @@ fun DeliverySection() {
                 Spacer(modifier = Modifier.width(20.dp))
                 Text(
                     "Fast (2-3days)",
-                    style = MaterialTheme.typography.bodyLarge.copy(
+                    style = typography.bodyLarge.copy(
                         fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                         fontWeight = FontWeight.W700,
                         fontSize = 14.sp,
@@ -226,7 +224,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
         ) {
             Text(
                 "Order:",
-                style = MaterialTheme.typography.bodyLarge.copy(
+                style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W400,
                     fontSize = 18.sp,
@@ -236,7 +234,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
             )
             Text(
                 text = "$ $orderAmount",
-                style = MaterialTheme.typography.bodyLarge.copy(
+                style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W600,
                     fontSize = 18.sp,
@@ -253,7 +251,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
         ) {
             Text(
                 "Delivery:",
-                style = MaterialTheme.typography.bodyLarge.copy(
+                style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W400,
                     fontSize = 18.sp,
@@ -262,7 +260,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
                 )
             )
             Text(
-                "$ ${deliveryAmount}", style = MaterialTheme.typography.bodyLarge.copy(
+                "$ ${deliveryAmount}", style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W600,
                     fontSize = 18.sp,
@@ -279,7 +277,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
         ) {
             Text(
                 "Total:",
-                style = MaterialTheme.typography.bodyLarge.copy(
+                style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W400,
                     fontSize = 18.sp,
@@ -290,7 +288,7 @@ fun OrderSummarySection(orderAmount: Double, deliveryAmount: Double) {
             )
             Text(
                 "$ ${orderAmount + deliveryAmount}",
-                style = MaterialTheme.typography.bodyLarge.copy(
+                style = typography.bodyLarge.copy(
                     fontFamily = FontFamily(Font(R.font.nunitosans_regular)),
                     fontWeight = FontWeight.W600,
                     fontSize = 18.sp,

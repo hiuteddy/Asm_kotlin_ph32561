@@ -2,40 +2,9 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-<<<<<<< HEAD
-      <entry key="HelloScreen">
-        <State />
-      </entry>
-      <entry key="HomeScreen">
-        <State />
-      </entry>
-      <entry key="Login">
-        <State />
-      </entry>
-      <entry key="LoginScreen">
-        <State />
-      </entry>
-      <entry key="SignSrceen">
-=======
-      <entry key="CheckOutScreen">
-        <State />
-      </entry>
-      <entry key="CheckOutSrceen">
-        <State />
-      </entry>
-      <entry key="MainActivity">
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
-        <State />
-      </entry>
       <entry key="app">
         <State />
       </entry>
-<<<<<<< HEAD
-=======
-      <entry key="preview">
-        <State />
-      </entry>
->>>>>>> feb2e70 (Hoàn thiện 8 màn hình)
     </value>
   </component>
 </project>

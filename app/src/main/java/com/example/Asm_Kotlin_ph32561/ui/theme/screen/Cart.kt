@@ -1,10 +1,6 @@
-package com.example.Asm_Kotlin_ph32561
+package com.example.Asm_Kotlin_ph32561.ui.theme.screen
 
 import android.annotation.SuppressLint
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -29,6 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.Asm_Kotlin_ph32561.navigation.Screen
+import com.example.Asm_Kotlin_ph32561.request.Product
 import com.example.myapplication.R
 
 @Preview(showBackground = true)
@@ -40,7 +38,9 @@ fun Cart(navController: NavController? = null) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun getLayout(navController: NavController? = null) {
+private fun getLayout(navController: NavController? = null,
+                      ) {
+
     val items = listOf(
         Product("Minimal Stand", "$25.00", R.drawable.cart_item_1),
         Product("Coffee Chair", "$20.00", R.drawable.cart_item_2),
@@ -49,6 +49,7 @@ private fun getLayout(navController: NavController? = null) {
 
 
         )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -101,7 +102,7 @@ private fun getLayout(navController: NavController? = null) {
             LazyColumn(
                 modifier = Modifier.weight(1f).padding(16.dp) // Let the LazyColumn take all available vertical space
 
-             // Thay 56dp bằng chiều cao của top app bar
+                // Thay 56dp bằng chiều cao của top app bar
             ) {
                 items.forEachIndexed { index, item ->
                     item {
@@ -119,7 +120,7 @@ private fun getLayout(navController: NavController? = null) {
 
             PromoCodeScreen(navController = navController)
 
-            }
+        }
     }
 }
 
@@ -348,8 +349,8 @@ fun TotalAmount(total: Double) {
             color = Color(0xFF303030), // Color #303030
 
         )
-    }
 
+    }
 }
 
 
